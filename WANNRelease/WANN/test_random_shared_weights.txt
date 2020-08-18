@@ -1,0 +1,3 @@
+	*** Running with hyperparameters:  p/biped.json 	***
+std:  105.12523272613804
+reward 90.20094266305907

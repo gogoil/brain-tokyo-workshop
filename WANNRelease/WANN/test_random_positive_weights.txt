@@ -1,0 +1,3 @@
+	*** Running with hyperparameters:  None 	***
+std:  78.9177595010378
+reward 398.8570726528439

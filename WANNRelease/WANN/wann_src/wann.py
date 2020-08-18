@@ -83,13 +83,12 @@ class Wann():
     nodeId = np.arange(0,p['ann_nInput']+ p['ann_nOutput']+1,1)
     node = np.empty((3,len(nodeId)))
     node[0,:] = nodeId
-    
     # Node types: [1:input, 2:hidden, 3:bias, 4:output]
     node[1,0]             = 4 # Bias
     node[1,1:p['ann_nInput']+1] = 1 # Input Nodes
     node[1,(p['ann_nInput']+1):\
            (p['ann_nInput']+p['ann_nOutput']+1)]  = 2 # Output Nodes
-    
+
     # Node Activations
     node[2,:] = p['ann_initAct']
 
@@ -97,7 +96,7 @@ class Wann():
     nConn = (p['ann_nInput']+1) * p['ann_nOutput']
     ins   = np.arange(0,p['ann_nInput']+1,1)            # Input and Bias Ids
     outs  = (p['ann_nInput']+1) + np.arange(0,p['ann_nOutput']) # Output Ids
-    
+
     conn = np.empty((5,nConn,))
     conn[0,:] = np.arange(0,nConn,1)      # Connection Id
     conn[1,:] = np.tile(ins, len(outs))   # Source Nodes
@@ -119,7 +118,6 @@ class Wann():
     innov = np.zeros([5,nConn])
     innov[0:3,:] = pop[0].conn[0:3,:]
     innov[3,:] = -1
-    
     self.pop = pop
     self.innov = innov
 

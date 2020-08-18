@@ -110,7 +110,8 @@ def getNodeOrder(nodeG,connG):
   """
   conn = np.copy(connG)
   node = np.copy(nodeG)
-  nIns = len(node[0,node[1,:] == 1]) + len(node[0,node[1,:] == 4])
+  nIns = len(node[0,node[1,:] == 1]) + len(node[0,node[1,:] == 4]) ### is 4
+  ### the bias?
   nOuts = len(node[0,node[1,:] == 2])
   
   # Create connection and initial weight matrices

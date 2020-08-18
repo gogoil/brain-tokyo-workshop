@@ -126,7 +126,3 @@ class DataGatherer():
 def lsave(filename, data):
   np.savetxt(filename, data, delimiter=',',fmt='%1.2e')
 
-
-
-
-
