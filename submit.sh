@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Write output to helloWorld-JOB_ID.out
-#SBATCH -j WANN
+#SBATCH -J WANN
 #SBATCH -o helloWorl-%j.out
 #Write error output to helloWorl-JOB_ID.err
 #SBATCH -o helloWorl-%j.err
@@ -12,6 +12,7 @@
 #SBATCH --mail-user=ido.goldb@gmail.com
 #SBATCH --mail-type=ALL
 #SBATCH -c 9
+#SBATCH --ntasks=9
 
 source /ems/elsc-labs/loewenstein-y/ido.goldberg/WANN/brain-tokyo-workshop/venv/bin/activate
-python WANNRelease/WANN/wann_train.py -p WANNRelease/WAN/p/improved_wan.json
+python WANNRelease/WANN/wann_train.py -p WANNRelease/WANN/p/improved_wan.json -d WANNRelease/WANN/p/improved_wan.json
