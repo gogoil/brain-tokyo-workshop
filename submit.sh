@@ -11,4 +11,4 @@
 #SBATCH --mail-user=ido.goldb@gmail.com
 #SBATCH --ntasks=9
 source /ems/elsc-labs/loewenstein-y/ido.goldberg/WANN/brain-tokyo-workshop/venv/bin/activate
-python WANNRelease/WANN/wann_train.py -p WANNRelease/WAN/p/improved_wan.json
+python WANNRelease/WANN/wann_train.py -p WANNRelease/WAN/p/improved_wan.json -n 1
