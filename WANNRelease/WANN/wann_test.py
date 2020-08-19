@@ -41,9 +41,9 @@ def main(argv):
                                 nVals=nMean, nRep=nRep,\
                                 view=view,returnVals=True, seed=seed)      
 
-  # print("[***]\tFitness:", fitness , '\n' + "[***]\tWeight Values:\t" , wVals)
-  # lsave(outPref+'reward.out',fitness)
-  # lsave(outPref+'wVals.out',wVals)
+  print("[***]\tFitness:", fitness , '\n' + "[***]\tWeight Values:\t" , wVals)
+  lsave(outPref+'reward.out',fitness)
+  lsave(outPref+'wVals.out',wVals)
 
 # -- --------------------------------------------------------------------- -- #
 def str2bool(v):
