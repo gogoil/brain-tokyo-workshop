@@ -4,7 +4,7 @@
 #SBATCH -J WANN
 #SBATCH -o helloWorl-%j.out
 #Write error output to helloWorl-JOB_ID.err
-#SBATCH -o helloWorl-%j.err
+#SBATCH -e helloWorl-%j.err
 #submit to elsc.q partition
 #SBATCH --partition=elsc.q
 #ask for 2g for the job
@@ -15,4 +15,4 @@
 #SBATCH --ntasks=9
 
 source /ems/elsc-labs/loewenstein-y/ido.goldberg/WANN/brain-tokyo-workshop/venv/bin/activate
-python WANNRelease/WANN/wann_train.py -p WANNRelease/WANN/p/improved_wan.json -d WANNRelease/WANN/p/improved_wan.json
+python WANNRelease/WANN/wann_train.py -p WANNRelease/WANN/p/default_wan.json -d WANNRelease/WANN/p/default_wan.json
