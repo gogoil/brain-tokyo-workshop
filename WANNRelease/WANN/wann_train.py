@@ -230,8 +230,12 @@ def mpi_fork(n):
       IN_MPI="1"
     )
     print( ["mpirun", "-np", str(n), sys.executable] + sys.argv)
-    subprocess.check_call(
-      ["mpiexec", "-n", str(n), sys.executable] + ['-u'] + sys.argv, env=env)
+    if sys.platform == "win32" or sys.platform == "win64":
+      subprocess.check_call(
+        ["mpiexec", "-n", str(n), sys.executable] + ['-u'] + sys.argv, env=env)
+    else:
+      subprocess.check_call(
+        ["mpirun", "-np", str(n), sys.executable] + ['-u'] + sys.argv, env=env)
 
     return "parent"
   else:
