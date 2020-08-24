@@ -260,9 +260,10 @@ def main():
                                           the_seed,
                                           use_model,
                                           weight_stdev)
-        output_string += 'lo: ' + str(pair[0]) + ' hi: ' + str(pair[1]) + ' ' \
-                                                                          'fit: ' + \
-                         str(np.mean(fit_arr)) + '\n'
+        output_string += 'lo: ' + str(pair[0]) + ' hi: ' + str(pair[1])\
+                        +'\nmean fit: ' +str(np.mean(fit_arr)) + '\nstd: ' \
+                        +str(np.std(fit_arr)) + '\n'
+        print(fit_arr)
     print(output_string)
 
 
