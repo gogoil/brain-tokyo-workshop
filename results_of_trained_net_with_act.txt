@@ -1,0 +1,4 @@
+	*** Running with hyperparameters:  WANNRelease\WANN\p\default_wan.json 	***
+std:  [ 36.43  48.29  74.49  18.58  56.8  104.71]
+[***]	Fitness: [412.55 411.2  321.93 508.13 564.67 598.35] 
+[***]	Weight Values:	 [-2.  -1.  -0.5  0.5  1.   2. ]
