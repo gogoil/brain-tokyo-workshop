@@ -7,12 +7,10 @@
 #SBATCH -e WANN-STDERR-%j.err
 #submit to elsc.q partition
 #SBATCH --partition=elsc.q
-#ask for 2g for the job
-#SBATCH --mem=2g
 #SBATCH --mail-user=ido.goldb@gmail.com
 #SBATCH --mail-type=ALL
 #SBATCH -cpus-per-task 1
 #SBATCH --ntasks=33
 
 source /ems/elsc-labs/loewenstein-y/ido.goldberg/WANN/brain-tokyo-workshop/venv/bin/activate
-python WANNRelease/WANN/wann_train.py -p WANNRelease/WANN/p/default_wan.json -d WANNRelease/WANN/p/default_wan.json -n 32
+python WANNRelease/WANN/wann_train.py -p WANNRelease/WANN/p/biped.json -d WANNRelease/WANN/p/biped.json -n 32
