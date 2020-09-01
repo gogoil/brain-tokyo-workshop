@@ -16,33 +16,41 @@ if __name__ == '__main__':
     # plt.xlabel('Evaluations')
     # plt.ylabel('Fitness')
     # plt.show()
-    # fig, ax, G, in_and_out_dict = viewInd('WANNRelease/WANNTool/champions/swing.out',
-    #                        'swingup')
-    fig, ax, G, in_and_out_dict = viewInd('log/test_best.out',
-                                          'swingup')
+    fig, ax, G, in_and_out_dict = viewInd('WANNRelease/WANNTool/champions/swing.out',
+                           'swingup')
+    # fig, ax, G, in_and_out_dict = viewInd('log/test_best.out',
+    #                                       'biped')
     # plt.savefig('laptop_swinger_best')
-    # plt.show()
+    plt.show()
     # print(in_and_out_dict)
     x = nx.all_simple_paths(G, 0, 1)
     hist_dict = {}
 
     npArr = np.empty((0,))
-    for i in range(15):
+    for i in range(35):
         hist_dict[i] = 0
-    for inNode in range(in_and_out_dict['nIn']):  # in
-        for outNode in range(in_and_out_dict['nNode'] - in_and_out_dict[
-            'nOut'], in_and_out_dict['nNode']):  # out
-            for path in nx.all_simple_paths(G, inNode, outNode):
-                npArr = np.append(npArr, len(path))
-                hist_dict[len(path)] += 1
-    print('mean: ', np.mean(npArr))
-    print('std: ', np.std(npArr))
-    print('number of pathes: ', len(npArr))
-    print('even path perc: ', np.sum(npArr % 2 == 0) / len(npArr))
+
+    for node in G.nodes:
+        hist_dict[G.degree(node)] += 1
+
+    # for inNode in range(in_and_out_dict['nIn']):  # in
+    #     for outNode in range(in_and_out_dict['nNode'] - in_and_out_dict[
+    #         'nOut'], in_and_out_dict['nNode']):  # out
+    #         for path in nx.all_simple_paths(G, inNode, outNode):
+    #             npArr = np.append(npArr, len(path))
+    #             hist_dict[len(path)] += 1
+    # print('mean: ', np.mean(npArr))
+    # print('std: ', np.std(npArr))
+    # print('number of pathes: ', len(npArr))
+    # print('even path perc: ', np.sum(npArr % 2 == 0) / len(npArr))
     # print(hist_dict)
     plt.bar(list(hist_dict.keys()), hist_dict.values(), color='g')
 
-    plt.xlabel('path length')
-    plt.ylabel('number of paths')
-    plt.title('Histogram of path length - activation function swing')
+    # plt.xlabel('path length')
+    # plt.ylabel('number of paths')
+    # plt.title('Histogram of path length - activation function swing')
+    plt.xlabel('node degree')
+    plt.ylabel('number of ndoes')
+    plt.title('Histogram of node degree - best swing')
     # plt.savefig('histogram_path_length_activation_function_swing')
+    plt.show()

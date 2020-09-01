@@ -1,0 +1,4 @@
+# of Connections in ANN:  74
+mean:  7.294444444444444
+std:  2.43058571409861
+number of pathes:  180
