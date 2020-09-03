@@ -16,7 +16,9 @@ if __name__ == '__main__':
     # plt.xlabel('Evaluations')
     # plt.ylabel('Fitness')
     # plt.show()
-    fig, ax, G, in_and_out_dict = viewInd('WANNRelease/WANNTool/champions/swing.out',
+    # fig, ax, G, in_and_out_dict = viewInd('WANNRelease/WANNTool/champions/swing.out',
+    #                        'swingup')
+    fig, ax, G, in_and_out_dict = viewInd('swing_act_function/test_best.out',
                            'swingup')
     # fig, ax, G, in_and_out_dict = viewInd('log/test_best.out',
     #                                       'biped')

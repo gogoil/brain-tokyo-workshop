@@ -93,7 +93,7 @@ cartpole_swingup = Game(env_name='CartPoleSwingUp_Hard',
   # h_act=[1,2,3,4,5,6,7,8,9,10],
   h_act=[6,7,9],
   o_act=np.full(1,5),
-  weightCap = 2.0,
+  weightCap = 2.0,  # cant find uses outside prettyNeat
   noise_bias=0.0,
   output_noise=[False, False, False],
   max_episode_length = 200,

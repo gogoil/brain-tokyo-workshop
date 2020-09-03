@@ -13,4 +13,4 @@
 #SBATCH --ntasks=33
 
 source /ems/elsc-labs/loewenstein-y/ido.goldberg/WANN/brain-tokyo-workshop/venv/bin/activate
-python WANNRelease/WANN/wann_train.py -p WANNRelease/WANN/p/biped.json -d WANNRelease/WANN/p/default_wan.json -n 32
+python WANNRelease/WANN/wann_train.py -p WANNRelease/WANN/p/laptop_swing.json -d WANNRelease/WANN/p/default_wan.json -n 32

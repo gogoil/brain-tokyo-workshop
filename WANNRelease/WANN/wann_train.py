@@ -6,6 +6,10 @@ import argparse
 import subprocess
 import numpy as np
 
+# Elite Fit= the best individual in the gen
+# Best Fit= the best individual in all gen
+# peak fit= the best individual in all gen on his best weight
+
 np.set_printoptions(precision=2, linewidth=160)
 
 # MPI

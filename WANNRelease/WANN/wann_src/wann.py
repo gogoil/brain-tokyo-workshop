@@ -70,7 +70,7 @@ class Wann():
     for i in range(np.shape(reward)[0]):
       self.pop[i].fitness = np.mean(reward[i,:])
       self.pop[i].fitMax  = np.max( reward[i,:])
-      self.pop[i].nConn   = self.pop[i].nConn
+      self.pop[i].nConn   = self.pop[i].nConn  # ?
   
 
   def initPop(self):
@@ -126,11 +126,15 @@ class Wann():
     """Rank population according to Pareto dominance.
     """
     # Compile objectives
-    meanFit = np.asarray([ind.fitness for ind in self.pop])
-    maxFit  = np.asarray([ind.fitMax  for ind in self.pop])
-    nConns  = np.asarray([ind.nConn   for ind in self.pop])
+    meanFit = np.asarray([ind.fitness for ind in self.pop]) # Mean fitness over trials
+    maxFit  = np.asarray([ind.fitMax  for ind in self.pop]) # Best fitness over trials
+    nConns  = np.asarray([ind.nConn   for ind in self.pop]) # model complexity
     nConns[nConns==0] = 1 # No conns is always pareto optimal (but boring)
     objVals = np.c_[meanFit,maxFit,1/nConns] # Maximize
+    # print('meanFit:\n', meanFit)
+    # print('maxFit:\n', meanFit)
+    # print('nConns:\n', nConns)
+    # print('objVals:\n', objVals)
 
     # Alternate second objective
     if self.p['alg_probMoo'] < np.random.rand():

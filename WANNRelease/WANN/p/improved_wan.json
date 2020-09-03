@@ -1,10 +1,10 @@
 {
     "task":"swingup",
-    "alg_wDist": "standard",
+    "alg_wDist": "[1,2,3]",
     "alg_nVals": 6,
     "alg_nReps": 4,
     "alg_probMoo": 0.80,
-    "maxGen": 3,
+    "maxGen": 2048,
     "popSize": 128,
     "prob_crossover": 0.0,
     "prob_mutAct":  0.50,

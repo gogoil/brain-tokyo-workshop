@@ -141,12 +141,13 @@ class Task():
     if nRep is False:
       nRep = hyp['alg_nReps']
 
-    # Set weight values to test WANN with
-    if (hyp['alg_wDist'] == "standard") and nVals==6: # Double, constant, and half signal
-      wVals = np.array(WEIGHTS_TO_TEST_ON)  ###extracted to a constant
-    else:
-      wVals = np.linspace(-self.absWCap, self.absWCap ,nVals)
-    # wVals = np.linspace(0.5, 2 ,6)
+    # # Set weight values to test WANN with
+    # if (hyp['alg_wDist'] == "standard") and nVals==6: # Double, constant, and half signal
+    #   wVals = np.array(WEIGHTS_TO_TEST_ON)  ###extracted to a constant
+    # else:
+    #   # print('wcap', self.absWCap)
+    #   wVals = np.linspace(-self.absWCap, self.absWCap ,nVals)
+    wVals = np.linspace(0.5, 2.5 ,6)
 
 
     # Get reward from 'reps' rollouts -- test population on same seeds
@@ -158,7 +159,7 @@ class Task():
           reward[iRep,iVal] = self.testInd(wMat, aVec, seed=seed,view=view)
         else:
           reward[iRep,iVal] = self.testInd(wMat, aVec, seed=seed+iRep,view=view)
-    # print('std: ', np.std(reward))
+    # print('std: ', np.std(reward, axis =0))
     # reward_temp = np.mean(reward)
     # print('reward', reward_temp)
     if returnVals is True:
