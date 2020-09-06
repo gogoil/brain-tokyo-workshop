@@ -18,10 +18,10 @@ if __name__ == '__main__':
     # plt.show()
     # fig, ax, G, in_and_out_dict = viewInd('WANNRelease/WANNTool/champions/swing.out',
     #                        'swingup')
-    fig, ax, G, in_and_out_dict = viewInd('swing_act_function/test_best.out',
-                           'swingup')
-    # fig, ax, G, in_and_out_dict = viewInd('log/test_best.out',
-    #                                       'biped')
+    # fig, ax, G, in_and_out_dict = viewInd('swing_act_function/test_best.out',
+    #                        'swingup')
+    fig, ax, G, in_and_out_dict = viewInd('log/test_best.out',
+                                          'swingup')
     # plt.savefig('laptop_swinger_best')
     plt.show()
     # print(in_and_out_dict)
@@ -45,14 +45,16 @@ if __name__ == '__main__':
     # print('std: ', np.std(npArr))
     # print('number of pathes: ', len(npArr))
     # print('even path perc: ', np.sum(npArr % 2 == 0) / len(npArr))
-    # print(hist_dict)
+    print(hist_dict)
+
+
     plt.bar(list(hist_dict.keys()), hist_dict.values(), color='g')
 
     # plt.xlabel('path length')
     # plt.ylabel('number of paths')
     # plt.title('Histogram of path length - activation function swing')
     plt.xlabel('node degree')
-    plt.ylabel('number of ndoes')
+    plt.ylabel('number of nodes')
     plt.title('Histogram of node degree - best swing')
     # plt.savefig('histogram_path_length_activation_function_swing')
     plt.show()

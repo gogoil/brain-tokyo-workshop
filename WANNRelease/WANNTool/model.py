@@ -83,8 +83,8 @@ class Model:
   def get_random_model_params(self, stdev=0.1):
     return np.random.randn(self.param_count)*stdev
 
-  def get_uniform_random_model_params(self, stdev=2.0):
-    return np.random.rand(self.param_count)*stdev*2-stdev
+  def get_uniform_random_model_params(self, a=0, b=0, stdev=2.0):
+    return np.random.rand(self.param_count)*a + b
 
   def get_single_model_params(self, weight=-1.0):
     return np.array([weight]*self.param_count)
@@ -218,7 +218,9 @@ def main():
   sweep_hi = args.hi
 
   model.make_env(render_mode=render_mode)
-
+  # pair_dict= {(0.75,1.25),(1.75,1.25),(2.75,1.25),(3.75,1.25)}
+  # for (a,b) in pair_dict:
+  #   print('U({},{})'.format(b,a+b))
   if use_model:
     model.load_model(filename)
   else:
@@ -249,7 +251,7 @@ def main():
         model.set_model_params(params)
         '''
         reward, steps_taken = simulate(model, train_mode=False, render_mode=False, num_episode=1, seed=the_seed+i)
-        print(i, reward)
+        # print(i, reward)
         rewards.append(reward[0])
       print("seed", the_seed, "average_reward", np.mean(rewards), "standard_deviation", np.std(rewards))
   else:

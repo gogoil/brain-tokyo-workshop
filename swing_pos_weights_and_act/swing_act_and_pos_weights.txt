@@ -18,6 +18,3 @@ mean:  8.991260349586016
 std:  1.951556115668847
 number of pathes:  8696
 even path perc:  0.49770009199632015
-
-Random weights:
-U
