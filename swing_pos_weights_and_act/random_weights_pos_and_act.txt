@@ -1,0 +1,10 @@
+model size 215
+cartpole_swingup_started
+U(1.25,2.0)
+seed 0 average_reward 533.4267655272491 standard_deviation 27.587181143183226
+U(1.25,5.0)
+seed 0 average_reward 496.48484510045245 standard_deviation 54.126247821346865
+U(1.25,3.0)
+seed 0 average_reward 591.4777945199603 standard_deviation 41.544930665316315
+U(1.25,4.0)
+seed 0 average_reward 546.7877386472344 standard_deviation 36.29282086825783

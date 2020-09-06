@@ -1,0 +1,23 @@
+model size 215
+cartpole_swingup_started
+weight -2.0 average_reward 416.89589452678166 standard_deviation 64.6248945519556
+weight -1.5 average_reward 409.5488539135874 standard_deviation 47.302125023392506
+weight -1.0 average_reward 367.0870682993067 standard_deviation 42.97527002495407
+weight -0.5 average_reward 5.381213067832304 standard_deviation 2.4803153594888476
+weight 0.0 average_reward 25.360377534293207 standard_deviation 35.775088010385645
+weight 0.5 average_reward 508.1662503960826 standard_deviation 18.252501917335728
+weight 1.0 average_reward 647.464148737768 standard_deviation 25.03290355545202
+weight 1.5 average_reward 672.8417336749818 standard_deviation 14.976863615787222
+weight 2.0 average_reward 642.8394575993618 standard_deviation 37.515075500712335
+
+
+
+Pathes data:
+# of Connections in ANN:  241
+mean:  8.991260349586016
+std:  1.951556115668847
+number of pathes:  8696
+even path perc:  0.49770009199632015
+
+Random weights:
+U
