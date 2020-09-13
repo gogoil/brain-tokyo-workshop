@@ -274,11 +274,12 @@ def applyAct(actId, x):
   elif actId == 3: # Sin
     value = np.sin(np.pi*x) 
 
-  elif actId == 4: # Gaussian with mean 0 and sigma 1
-    value = np.exp(-np.multiply(x, x) / 2.0)
+  elif actId == 4: # changed to minus Sigmoid
+    value = -((np.tanh(x/2.0) + 1.0)/2.0)
+
 
   elif actId == 5: # Hyperbolic Tangent (signed)
-    value = np.tanh(x)     
+    value = -np.maximum(0, x)
 
   elif actId == 6: # Sigmoid (unsigned)
     value = (np.tanh(x/2.0) + 1.0)/2.0

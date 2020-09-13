@@ -289,22 +289,22 @@ if __name__ == "__main__":
     ''' Parse input and lau~nch '''
     parser = argparse.ArgumentParser(description=('Evolve NEAT networks'))
 
-parser.add_argument('-d', '--default', type=str, \
-                    help='default hyperparameter file',
-                    default='p/default_wan.json')
+    parser.add_argument('-d', '--default', type=str, \
+                        help='default hyperparameter file',
+                        default='p/default_wan.json')
 
-parser.add_argument('-p', '--hyperparam', type=str, \
-                    help='hyperparameter file', default='p/laptop_swing.json')
+    parser.add_argument('-p', '--hyperparam', type=str, \
+                        help='hyperparameter file', default='p/laptop_swing.json')
 
-parser.add_argument('-o', '--outPrefix', type=str, \
-                    help='file name for result output', default='test')
+    parser.add_argument('-o', '--outPrefix', type=str, \
+                        help='file name for result output', default='test')
 
-parser.add_argument('-n', '--num_worker', type=int, \
-                    help='number of cores to use', default=8)
+    parser.add_argument('-n', '--num_worker', type=int, \
+                        help='number of cores to use', default=8)
 
-args = parser.parse_args()
+    args = parser.parse_args()
 
-# Use MPI if parallel
-if "parent" == mpi_fork(args.num_worker + 1): os._exit(0)
+    # Use MPI if parallel
+    if "parent" == mpi_fork(args.num_worker + 1): os._exit(0)
 
-main(args)
+    main(args)

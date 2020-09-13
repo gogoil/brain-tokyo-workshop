@@ -2,7 +2,7 @@
 
 #Write output to biped_STDOUT_JOB_ID.out
 #SBATCH -J WANN
-#SBATCH -o biped_STDOUT_%j.out
+#SBATCH -o biped_new_act_STDOUT_%j.out
 #Write error output to biped_STDERR_JOB_ID.err
 #SBATCH -e biped_STDERR_%j.err
 #submit to elsc.q partition
