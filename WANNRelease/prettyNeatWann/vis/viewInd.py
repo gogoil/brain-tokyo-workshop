@@ -2,13 +2,15 @@ from matplotlib import pyplot as plt
 import networkx as nx
 import numpy as np
 import sys
-
+import os
 sys.path.append('../domain/')
 sys.path.append('vis')
 from domain.config import games
 
 
 def viewInd(ind, taskName):
+    print(os.path.dirname(os.path.abspath(__file__)))
+
     env = games[taskName]
     if isinstance(ind, str):
         ind = np.loadtxt(ind, delimiter=',')

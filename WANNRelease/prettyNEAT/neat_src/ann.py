@@ -1,6 +1,5 @@
 import numpy as np
 
-
 # -- ANN Ordering -------------------------------------------------------- -- #
 
 def getNodeOrder(nodeG,connG):
@@ -34,6 +33,7 @@ def getNodeOrder(nodeG,connG):
     * setdiff1d is slow, as all numbers are positive ints is there a
       better way to do with indexing tricks (as in quickINTersect)?
   """
+  global COUNTER
   conn = np.copy(connG)
   node = np.copy(nodeG)
   nIns = len(node[0,node[1,:] == 1]) + len(node[0,node[1,:] == 4])
@@ -53,6 +53,12 @@ def getNodeOrder(nodeG,connG):
   wMat[src,dest] = conn[3,:]
   connMat = wMat[nIns+nOuts:,nIns+nOuts:]
   connMat[connMat!=0] = 1
+  
+  print('wMat\n {}'.format(wMat))
+  print('connMat\n {}'.format(connMat))
+  print('src\n {}'.format(src))
+  print('dest\n {}'.format(dest))
+
 
   # Topological Sort of Hidden Nodes
   edge_in = np.sum(connMat,axis=0)
@@ -73,7 +79,12 @@ def getNodeOrder(nodeG,connG):
   Q += nIns+nOuts
   Q = np.r_[lookup[:nIns], Q, lookup[nIns:nIns+nOuts]]
   wMat = wMat[np.ix_(Q,Q)]
-  
+
+  print('Q\n {}'.format(Q))
+  print('wMat\n {}'.format(wMat))
+  COUNTER +=1
+  if COUNTER == 3000:
+    exit()
   return Q, wMat
 
 def getLayer(wMat):

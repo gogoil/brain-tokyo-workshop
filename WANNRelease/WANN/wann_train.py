@@ -21,6 +21,7 @@ rank = comm.Get_rank()
 from wann_src import *  # WANN evolution
 from domain import *  # Task environments
 
+PRINTING = False
 
 # -- Run NE -------------------------------------------------------------- -- #
 def master():
