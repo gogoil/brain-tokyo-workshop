@@ -2,7 +2,7 @@
 
 #Write output to biped_STDOUT_JOB_ID.out
 #SBATCH -J WANN
-#SBATCH -o swing_RNN_STDOUT_%j.out
+#SBATCH -o swing_RNN_T_3_STDOUT_%j.out
 #Write error output to swing_RNN_STDERR_JOB_ID.err
 #SBATCH -e swing_RNN_STDERR_%j.err
 #submit to elsc.q partition
