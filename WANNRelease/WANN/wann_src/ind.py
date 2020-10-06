@@ -1,7 +1,7 @@
 import numpy as np
 import copy
 from wann_train import PRINTING
-number_of_inside_iterations = 10
+number_of_inside_iterations = 3
 
 
 # -- Individual Class ---------------------------------------------------- -- #

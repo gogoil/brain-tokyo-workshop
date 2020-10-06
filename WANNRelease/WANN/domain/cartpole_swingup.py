@@ -92,6 +92,7 @@ class CartPoleSwingUpEnv(gym.Env):
         theta_dot = theta_dot + thetadot_update*self.dt  
 
         return (x, x_dot, theta, theta_dot)
+        # return (x, 0, theta, 0)
 
     def step(self, action):
         # Valid action

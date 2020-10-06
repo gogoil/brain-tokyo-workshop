@@ -91,7 +91,7 @@ cartpole_swingup = Game(env_name='CartPoleSwingUp_Hard',
   layers=[5, 5],
   i_act=np.full(5,1),
   # h_act=[1,2,3,4,5,6,7,8,9,10],
-  h_act=[6,7,9],
+  h_act=[1,6,7,9],
   o_act=np.full(1,5),
   weightCap = 2.0,  # cant find uses outside prettyNeat
   noise_bias=0.0,

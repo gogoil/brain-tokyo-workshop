@@ -303,6 +303,9 @@ if __name__ == "__main__":
     parser.add_argument('-n', '--num_worker', type=int, \
                         help='number of cores to use', default=8)
 
+    # parser.add_argument('-T', '--iter', type=int, \
+    #                     help='number of iterations for one activation',
+    #                     default=10)
     args = parser.parse_args()
 
     # Use MPI if parallel

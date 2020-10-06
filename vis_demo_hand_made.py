@@ -53,7 +53,7 @@ if __name__ == '__main__':
     # fig, ax, G, in_and_out_dict = viewInd('swing_act_function/test_best.out',
     #                        'swingup')
     fig, ax, G, in_and_out_dict = viewInd(
-        '../../WANNRelease/WANN/log/test_best.out',
+        'log_swing_RNN_T10/test_best.out',
         'swingup')
     # plt.savefig('laptop_swinger_best')
     plt.show()
