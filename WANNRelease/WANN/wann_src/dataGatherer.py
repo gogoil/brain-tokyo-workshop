@@ -2,7 +2,6 @@ import os
 import numpy as np
 import copy
 from .ind import exportNet
-from wann_train import PRINTING
 
 class DataGatherer():
     ''' Data recorder for WANN algorithm'''
@@ -57,9 +56,6 @@ class DataGatherer():
         else:
             self.best = np.append(self.best, copy.deepcopy(self.best[-1]))
             self.newBest = False
-        # if PRINTING:
-        print('best conn mat')
-        print(self.best[-1].conn)
         # ------------------------------------------------------------------------
 
         # --- Generation fit/complexity stats ------------------------------------

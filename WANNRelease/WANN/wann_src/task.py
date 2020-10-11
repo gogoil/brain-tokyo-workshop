@@ -68,7 +68,7 @@ class Task():
         self.env.t = 0
 
         annOut, nodeAct = act(wVec, aVec, self.nInput, self.nOutput,
-                              state)
+                              state, 0)
         action = selectAct(annOut, self.actSelect)
 
         state, reward, done, info = self.env.step(action)

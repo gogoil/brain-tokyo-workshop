@@ -211,7 +211,7 @@ def getLayer(wMat):
 
 # -- ANN Activation ------------------------------------------------------ -- #
 
-def act(weights, aVec, nInput, nOutput, inPattern, nodeAct=True):
+def act(weights, aVec, nInput, nOutput, inPattern, nodeAct):
     """Returns FFANN output given a single input pattern
     If the variable weights is a vector it is turned into a square weight matrix
 
@@ -249,7 +249,7 @@ def act(weights, aVec, nInput, nOutput, inPattern, nodeAct=True):
         nSamples = 1
 
     # set up nodeAct:
-    if nodeAct is True:
+    if nodeAct == 0:
         nodeAct = np.zeros((nSamples, nNodes))
         nodeAct[:, 0] = 1  # Bias activation
 
