@@ -249,7 +249,7 @@ def act(weights, aVec, nInput, nOutput, inPattern, nodeAct):
         nSamples = 1
 
     # set up nodeAct:
-    if nodeAct == 0:
+    if nodeAct is 0:
         nodeAct = np.zeros((nSamples, nNodes))
         nodeAct[:, 0] = 1  # Bias activation
 
