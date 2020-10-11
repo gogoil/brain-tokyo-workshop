@@ -18,4 +18,4 @@ if __name__ == '__main__':
     plt.legend(['Median Fitness','Max Fitness','Best Fitness'])
     plt.xlabel('Evaluations')
     plt.ylabel('Fitness')
-    plt.savefig('another_git_file')
+    plt.savefig('swing_test_stats_T20')

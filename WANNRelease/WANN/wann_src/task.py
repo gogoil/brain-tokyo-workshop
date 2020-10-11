@@ -67,8 +67,8 @@ class Task():
         state = self.env.reset()
         self.env.t = 0
 
-        annOut = act(wVec, aVec, self.nInput, self.nOutput,
-                     state)
+        annOut, nodeAct = act(wVec, aVec, self.nInput, self.nOutput,
+                              state)
         action = selectAct(annOut, self.actSelect)
 
         state, reward, done, info = self.env.step(action)
@@ -76,10 +76,10 @@ class Task():
             return reward
         else:
             totalReward = reward
-
         for tStep in range(self.maxEpisodeLength):
-            annOut = act(wVec, aVec, self.nInput, self.nOutput,
-                         state)
+
+            annOut, nodeAct = act(wVec, aVec, self.nInput, self.nOutput,
+                                  state, nodeAct)
             action = selectAct(annOut, self.actSelect)
             state, reward, done, info = self.env.step(action)
             totalReward += reward

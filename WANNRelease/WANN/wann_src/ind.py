@@ -1,7 +1,7 @@
 import numpy as np
 import copy
 from wann_train import PRINTING
-number_of_inside_iterations = 20
+number_of_inside_iterations = 5
 
 
 # -- Individual Class ---------------------------------------------------- -- #
@@ -211,7 +211,7 @@ def getLayer(wMat):
 
 # -- ANN Activation ------------------------------------------------------ -- #
 
-def act(weights, aVec, nInput, nOutput, inPattern):
+def act(weights, aVec, nInput, nOutput, inPattern, nodeAct=True):
     """Returns FFANN output given a single input pattern
     If the variable weights is a vector it is turned into a square weight matrix
 
@@ -248,13 +248,16 @@ def act(weights, aVec, nInput, nOutput, inPattern):
     else:
         nSamples = 1
 
-    # Run input pattern through ANN
-    nodeAct = np.zeros((nSamples, nNodes))
-    prev_computation = np.zeros((nSamples, nNodes))
+    # set up nodeAct:
+    if nodeAct is True:
+        nodeAct = np.zeros((nSamples, nNodes))
+        nodeAct[:, 0] = 1  # Bias activation
 
-    nodeAct[:, 0] = 1  # Bias activation
     nodeAct[:, 1:nInput + 1] = inPattern
-    prev_computation[:, 1:nInput + 1] = inPattern
+
+    prev_computation = np.copy(nodeAct)
+
+    # Run input pattern through ANN
     for i in range(number_of_inside_iterations):
         # print('nodeACt {}'.format(nodeAct))
         # print('wMat\n {}'.format(wMat))
@@ -267,15 +270,10 @@ def act(weights, aVec, nInput, nOutput, inPattern):
                             wMat[:, iNode]).squeeze()  # TODO change
             # nodeAct to prev_computation
             nodeAct[:, iNode] = applyAct(aVec[iNode], rawAct)
-        prev_computation = nodeAct
-        # if PRINTING:
-        #     print('node act: ')
-        #     print(nodeAct)
-        # print('final nodeACt {}'.format(nodeAct))
-        # exit()
+        prev_computation = np.copy(nodeAct)
 
     output = nodeAct[:, -nOutput:]
-    return output
+    return output, nodeAct
 
 
 def applyAct(actId, x):

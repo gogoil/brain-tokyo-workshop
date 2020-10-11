@@ -21,6 +21,12 @@ render_mode = False
 
 #final_mode = False; render_mode = True # VIEW: toggle with comment to view trials
 
+class inside:
+  def __init__(self):
+    self.value = 10
+
+number_of_inside_iterations = inside()
+
 RENDER_DELAY = False
 record_video = False
 MEAN_MODE = False
@@ -38,7 +44,6 @@ def make_model(game):
 class Model:
   ''' simple feedforward model '''
   def __init__(self, game):
-
     self.env_name = game.env_name
     self.wann_file = game.wann_file
     self.input_size = game.input_size
@@ -263,4 +268,10 @@ def main():
       print ("terminal reward", reward, "average steps taken", np.mean(steps_taken)+1)
 
 if __name__ == "__main__":
-  main()
+  for i in range(10,30,5):
+    number_of_inside_iterations.value = i
+    print('number_of_inside_iterations is {}'.format(
+      number_of_inside_iterations.value))
+    print('\n res:')
+    main()
+    print('\n\n\n')

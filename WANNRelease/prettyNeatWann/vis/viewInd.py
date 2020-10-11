@@ -178,16 +178,16 @@ def getLayer(wMat):
     wMat[wMat != 0] = 1
     nNode = np.shape(wMat)[0]
     layer = np.zeros((nNode))
-    while (True):  # Loop until sorting doesn't help any more
-        prevOrder = np.copy(layer)
-        for curr in range(nNode):
-            srcLayer = np.zeros((nNode))
-            for src in range(nNode):
-                srcLayer[src] = layer[src] * wMat[src, curr]
-            layer[curr] = np.max(srcLayer) + 1
-        if all(prevOrder == layer):
-            break
-    return layer - 1
+    # while (True):  # Loop until sorting doesn't help any more
+    #     prevOrder = np.copy(layer)
+    #     for curr in range(nNode):
+    #         srcLayer = np.zeros((nNode))
+    #         for src in range(nNode):
+    #             srcLayer[src] = layer[src] * wMat[src, curr]
+    #         layer[curr] = np.max(srcLayer) + 1
+    #     if all(prevOrder == layer):
+    #         break
+    return layer + 1
 
 
 def cLinspace(start, end, N):
