@@ -256,10 +256,10 @@ def mutAddConn(self, connG, nodeG, innov, gen):
     _, wMat = getNodeOrder(nodeG, connG)  # Topological Sort of Network
     hMat = wMat[nIns:-nOuts, nIns:-nOuts]
     hLay = getLayer(hMat)
-    if PRINTING:
-        print('start of another round')
-        print('nodeG \n{}'.format(nodeG))
-        print('connG \n{}'.format(connG))
+    # if PRINTING:
+    #     print('start of another round')
+    #     print('nodeG \n{}'.format(nodeG))
+    #     print('connG \n{}'.format(connG))
 
     # To avoid recurrent connections nodes are sorted into layers, and
     # connections are only allowed from lower to higher layers
@@ -271,15 +271,15 @@ def mutAddConn(self, connG, nodeG, innov, gen):
     # print('nOuts\n {}\n'.format(nOuts))
 
     L = np.r_[np.zeros(nIns), hLay, np.full((nOuts), lastLayer)]
-    if PRINTING:
-        print('L\n {}\n'.format(L))
+    # if PRINTING:
+    #     print('L\n {}\n'.format(L))
 
     nodeKey = np.c_[nodeG[0, :], L]  # Assign Layers
 
     # node key is  2 X nNodes array, the [:,0] array is node index, and
     # [1,:] is the node layer
-    if PRINTING:
-        print('nodeKey\n {}\n'.format(nodeKey))
+    # if PRINTING:
+    #     print('nodeKey\n {}\n'.format(nodeKey))
 
     # get random permutation of nodes
     sources = np.random.permutation(len(nodeKey))
@@ -291,41 +291,36 @@ def mutAddConn(self, connG, nodeG, innov, gen):
         else:
             dest = np.where(nodeKey[:, 1] >= srcLayer)[
                 0]  # nodes with >= layer
-        if PRINTING:
-            print('src\n {}\n'.format(src))
-            print('srcLayer\n {}\n'.format(srcLayer))
-            print('dest\n {}\n'.format(dest))
-
         # layer that is bigger than current one ???
 
         # Finding already existing connections:
         #   take all connection genes with this source (connG[1,:])
-        if PRINTING:
-            print('connG[1,:]\n {}\n'.format(connG[1, :]))
-
-            #   take the destination of those genes (connG[2,:])
-            print('connG[2,:]\n {}\n'.format(connG[2, :]))
+        # if PRINTING:
+        #     print('connG[1,:]\n {}\n'.format(connG[1, :]))
+        #
+        #     #   take the destination of those genes (connG[2,:])
+        #     print('connG[2,:]\n {}\n'.format(connG[2, :]))
 
         #   convert to nodeKey index (gotta be a better way in numpy...)
         srcIndx = np.where(connG[1, :] == nodeKey[src, 0])[0]
-        if PRINTING:
-            print(' np.where(connG[1, :] == nodeKey[src, 0])\n {}\n'.format(
-                np.where(connG[1, :] == nodeKey[src, 0])))
-            print('srcIndx\n {}\n'.format(srcIndx))
+        # if PRINTING:
+        #     print(' np.where(connG[1, :] == nodeKey[src, 0])\n {}\n'.format(
+        #         np.where(connG[1, :] == nodeKey[src, 0])))
+        #     print('srcIndx\n {}\n'.format(srcIndx))
 
         exist = connG[2, srcIndx]
-        if PRINTING:
-            print('exist\n {}\n'.format(exist))
+        # if PRINTING:
+        #     print('exist\n {}\n'.format(exist))
 
         existKey = []
         for iExist in exist:
             existKey.append(np.where(nodeKey[:, 0] == iExist)[0])
-        if PRINTING:
-            print('existKey\n {}\n'.format(existKey))
+        # if PRINTING:
+        #     print('existKey\n {}\n'.format(existKey))
 
         dest = np.setdiff1d(dest, existKey)  # Remove existing connections
-        if PRINTING:
-            print('dest (after set_diff):\n {}\n'.format(dest))
+        # if PRINTING:
+        #     print('dest (after set_diff):\n {}\n'.format(dest))
 
         # Add a random valid connection
         np.random.shuffle(dest)
@@ -335,8 +330,8 @@ def mutAddConn(self, connG, nodeG, innov, gen):
             connNew[1] = nodeKey[src, 0]
 
             connNew[2] = nodeKey[dest[0], 0]
-            if PRINTING:
-                print('nodeKey[dest[0], 0]\n {}\n'.format(nodeKey[dest[0], 0]))
+            # if PRINTING:
+            #     print('nodeKey[dest[0], 0]\n {}\n'.format(nodeKey[dest[0], 0]))
 
             connNew[3] = 1
             connNew[4] = 1

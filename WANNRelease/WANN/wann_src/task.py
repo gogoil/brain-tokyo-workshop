@@ -9,7 +9,7 @@ from .ind import *
 np.set_printoptions(precision=2, linewidth=160)
 
 WEIGHTS_TO_TEST_ON = (
--2, -1.0, -0.5, 0.5, 1.0, 2)  ### TODO test only on positive weights
+    -2, -1.0, -0.5, 0.5, 1.0, 2)  ### TODO test only on positive weights
 
 
 class Task():
@@ -165,9 +165,6 @@ class Task():
                     reward[iRep, iVal] = self.testInd(wMat, aVec,
                                                       seed=seed + iRep,
                                                       view=view)
-        # print('std: ', np.std(reward, axis =0))
-        # reward_temp = np.mean(reward)
-        # print('reward', reward_temp)
         if returnVals is True:
             return np.mean(reward, axis=0), wVals
         return np.mean(reward, axis=0)

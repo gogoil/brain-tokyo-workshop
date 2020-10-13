@@ -1,6 +1,5 @@
 import numpy as np
-import copy
-from wann_train import PRINTING
+
 number_of_inside_iterations = 5
 
 
@@ -190,26 +189,90 @@ def getLayer(wMat):
       given that this happen in the serial part of the algorithm. There is
       probably a more clever way to do this given the adjacency matrix.
     """
-    i, j = wMat.shape
-    return np.ones(i)
-    # exit('shoud\'t get into here')
+    # i, j = wMat.shape
+    # return np.ones(i)
+    # # exit('shoud\'t get into here')
     wMat[np.isnan(wMat)] = 0
     wMat[wMat != 0] = 1
     nNode = np.shape(wMat)[0]
-    layer = np.zeros((nNode))
-    while (True):  # Loop until sorting is stable
-        prevOrder = np.copy(layer)
-        for curr in range(nNode):
-            srcLayer = np.zeros((nNode))
-            for src in range(nNode):
-                srcLayer[src] = layer[src] * wMat[src, curr]
-            layer[curr] = np.max(srcLayer) + 1
-        if all(prevOrder == layer):
-            break
-    return layer - 1
+    layer = np.ones((nNode))
+    # while (True):  # Loop until sorting is stable
+    #     prevOrder = np.copy(layer)
+    #     for curr in range(nNode):
+    #         srcLayer = np.zeros((nNode))
+    #         for src in range(nNode):
+    #             srcLayer[src] = layer[src] * wMat[src, curr]
+    #         layer[curr] = np.max(srcLayer) + 1
+    #     if all(prevOrder == layer):
+    #         break
+    return layer
 
 
 # -- ANN Activation ------------------------------------------------------ -- #
+
+# def act(weights, aVec, nInput, nOutput, inPattern, nodeAct):
+#     """Returns FFANN output given a single input pattern
+#     If the variable weights is a vector it is turned into a square weight matrix
+#
+#     Allows the network to return the result of several samples at once if given
+#     a matrix instead of a vector of inputs:
+#         Dim 0 : individual samples
+#         Dim 1 : dimensionality of pattern (# of inputs)
+#
+#     Args:
+#       weights   - (np_array) - ordered weight matrix or vector
+#                   [N X N] or [N**2]
+#       aVec      - (np_array) - activation function of each node
+#                   [N X 1]    - stored as ints (see applyAct in ann.py)
+#       nInput    - (int)      - number of input nodes
+#       nOutput   - (int)      - number of output nodes
+#       inPattern - (np_array) - input activation
+#                   [1 X nInput] or [nSamples X nInput]
+#
+#     Returns:
+#       output    - (np_array) - output activation
+#                   [1 X nOutput] or [nSamples X nOutput]
+#     """
+#     # Turn weight vector into weight matrix
+#     if np.ndim(weights) < 2:
+#         nNodes = int(np.sqrt(np.shape(weights)[0]))
+#         wMat = np.reshape(weights, (nNodes, nNodes))
+#     else:
+#         nNodes = np.shape(weights)[0]
+#         wMat = weights
+#     wMat[np.isnan(wMat)] = 0
+#     # Vectorize input
+#     if np.ndim(inPattern) > 1:
+#         nSamples = np.shape(inPattern)[0]
+#     else:
+#         nSamples = 1
+#
+#     # set up nodeAct:
+#     if nodeAct is 0:
+#         nodeAct = np.zeros((nSamples, nNodes))
+#         nodeAct[:, 0] = 1  # Bias activation
+#
+#     nodeAct[:, 1:nInput + 1] = inPattern
+#
+#     prev_computation = np.copy(nodeAct)
+#
+#     # Run input pattern through ANN
+#     for i in range(number_of_inside_iterations):
+#         # print('nodeACt {}'.format(nodeAct))
+#         # print('wMat\n {}'.format(wMat))
+#         # Propagate signal through hidden to output nodes
+#         iNode = nInput + 1
+#         for iNode in range(nInput + 1, nNodes):
+#             # print('wMat partial\n {}'.format(wMat[:, iNode]))
+#
+#             rawAct = np.dot(prev_computation,
+#                             wMat[:, iNode]).squeeze()  # TODO change
+#             # nodeAct to prev_computation
+#             nodeAct[:, iNode] = applyAct(aVec[iNode], rawAct)
+#         prev_computation = np.copy(nodeAct)
+#
+#     output = nodeAct[:, -nOutput:]
+#     return output, nodeAct
 
 def act(weights, aVec, nInput, nOutput, inPattern, nodeAct):
     """Returns FFANN output given a single input pattern
@@ -221,6 +284,7 @@ def act(weights, aVec, nInput, nOutput, inPattern, nodeAct):
         Dim 1 : dimensionality of pattern (# of inputs)
 
     Args:
+      weights   - (np_array) - ordered weight matrix or vector
       weights   - (np_array) - ordered weight matrix or vector
                   [N X N] or [N**2]
       aVec      - (np_array) - activation function of each node
@@ -256,11 +320,14 @@ def act(weights, aVec, nInput, nOutput, inPattern, nodeAct):
     nodeAct[:, 1:nInput + 1] = inPattern
 
     prev_computation = np.copy(nodeAct)
-
+    # if np.isnan(prev_computation).any() or np.isinf(prev_computation).any():
+    #     print('prev_computation: {}'.format(prev_computation))
+    #     exit('problem3')
+    # if np.isnan(nodeAct).any() or np.isinf(nodeAct).any():
+    #     print('nodeAct: {}'.format(nodeAct))
+    #     exit('problem4')
     # Run input pattern through ANN
     for i in range(number_of_inside_iterations):
-        # print('nodeACt {}'.format(nodeAct))
-        # print('wMat\n {}'.format(wMat))
         # Propagate signal through hidden to output nodes
         iNode = nInput + 1
         for iNode in range(nInput + 1, nNodes):
@@ -268,11 +335,40 @@ def act(weights, aVec, nInput, nOutput, inPattern, nodeAct):
 
             rawAct = np.dot(prev_computation,
                             wMat[:, iNode]).squeeze()  # TODO change
+            # if np.isnan(rawAct).any() or np.isinf(rawAct).any():
+            #     print('weights: ', weights)
+            #     print('prev_computation', prev_computation)
+            #     print('rawAct: {}'.format(rawAct))
+            #     print(wMat)
+            #     print(iNode)
+            #     print(wMat[:, iNode])
+            #     exit('problem7')
+            # if np.isinf(prev_computation).any() or np.isinf(
+            #         prev_computation).any():
+            #     print('prev_computation: {}'.format(prev_computation))
+            #     print(
+            #         'prev_computation: {}'.format(np.isinf(prev_computation)))
+            #     exit('problem5')
             # nodeAct to prev_computation
             nodeAct[:, iNode] = applyAct(aVec[iNode], rawAct)
+            # if np.isnan(nodeAct).any() or np.isinf(
+            #         nodeAct).any():
+            #     print('nodeAct: {}'.format(nodeAct))
+            #     print('rawAct', rawAct)
+            #     print('aVec', aVec)
+            #     print('iNode', iNode)
+            #     exit('problem6')
         prev_computation = np.copy(nodeAct)
-
+    # if np.isnan(prev_computation).any() or np.isinf(
+    #         prev_computation).any():
+    #     exit('problem2')
     output = nodeAct[:, -nOutput:]
+    # if np.isnan(nodeAct).any() or np.isinf(
+    #         nodeAct).any():
+    #     print('nodeAct: {}'.format(nodeAct))
+    #     exit('problem1')
+    nodeAct[np.where(nodeAct > 1e5)] = 1e5
+    nodeAct[np.where(nodeAct < -1e5)] = -1e5
     return output, nodeAct
 
 
