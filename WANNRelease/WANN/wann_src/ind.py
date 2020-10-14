@@ -1,6 +1,6 @@
 import numpy as np
 
-number_of_inside_iterations = 20
+number_of_inside_iterations = 5
 
 
 # -- Individual Class ---------------------------------------------------- -- #
@@ -93,7 +93,7 @@ def getNodeOrder(nodeG, connG):
               [2,:] == Destination Node Id
               [3,:] == Weight Value
               [4,:] == Enabled?
-
+c
     Returns:
       Q    - [int]      - sorted node order as indices
       wMat - (np_array) - ordered weight matrix
@@ -397,22 +397,20 @@ def applyAct(actId, x):
       output  - (float) - value after activation is applied
                 [? X ?] - same dimensionality as input
     """
-    if actId == 1:  # Linear
-        value = x
+    if actId == 1:  # changed to sigmoid
+        value = (np.tanh(x/2.0) + 1.0)/2.0
 
-    if actId == 2:  # Unsigned Step Function
-        value = 1.0 * (x > 0.0)
-        # value = (np.tanh(50*x/2.0) + 1.0)/2.0
+    elif actId == 2:  # changed to minus sigmoid
+        value = -(np.tanh(x / 2.0) + 1.0) / 2.0
 
-    elif actId == 3:  # Sin
-        value = np.sin(np.pi * x)
+    elif actId == 3:  # changed to tan hyperbolic
+        value = np.tanh(x)
 
-    elif actId == 4:  # changed to minus Sigmoid
-        value = -((np.tanh(x / 2.0) + 1.0) / 2.0)
-
+    elif actId == 4:  # changed to minus tan hyperbolic
+        value = -np.tanh(x)
 
     elif actId == 5:  # Hyperbolic Tangent (signed)
-        value = -np.maximum(0, x)
+        value = np.tanh(x)
 
     elif actId == 6:  # Sigmoid (unsigned)
         value = (np.tanh(x / 2.0) + 1.0) / 2.0
