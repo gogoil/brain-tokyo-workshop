@@ -1,6 +1,6 @@
 import numpy as np
 
-number_of_inside_iterations = 5
+number_of_inside_iterations = 20
 
 
 # -- Individual Class ---------------------------------------------------- -- #

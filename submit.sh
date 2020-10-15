@@ -2,9 +2,9 @@
 
 #Write output to biped_STDOUT_JOB_ID.out
 #SBATCH -J WANN
-#SBATCH -o satu_func_swing_RNN_V3_T_5_STDOUT_%j.out
+#SBATCH -o satu_func_swing_RNN_V3_T_20_STDOUT_%j.out
 #Write error output to swing_RNN_STDERR_JOB_ID.err
-#SBATCH -e satu_func_swing_RNN_V3_T_5_STDERR_%j.err
+#SBATCH -e satu_func_swing_RNN_V3_T_20_STDERR_%j.err
 #submit to elsc.q partition
 #SBATCH --partition=elsc.q
 #SBATCH --mail-user=ido.goldb@gmail.com

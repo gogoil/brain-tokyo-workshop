@@ -18,4 +18,4 @@ if __name__ == '__main__':
     plt.legend(['Median Fitness','Max Fitness','Best Fitness'])
     plt.xlabel('Evaluations')
     plt.ylabel('Fitness')
-    plt.savefig('swing_test_stats_T5_RNN_V3')
+    plt.savefig('swing_test_stats_T5_RNN_V3_with_satu_func')
